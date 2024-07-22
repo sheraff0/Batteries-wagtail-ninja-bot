@@ -1,0 +1,18 @@
+{% load humanize %}
+<div class="new__content swiper-slide">
+  <a href="{{ product.url }}">
+    {% include 'root/snippets/product_premium.html' %}
+    <img src="{{ product.image_url }}" alt="" class="new__img">
+    <h3 class="new__title">{{ product.title }}</h3>
+    <span class="new__subtitle">{{ product.parent.title }}</span>
+
+    <div class="new__prices">
+      <span class="new__price">{{ product.price_discount|intcomma }}&nbsp;₽</span>{% if product.price > product.price_discount %}
+      <span class="new__discount">{{ product.price|intcomma }}&nbsp;₽</span>{% endif %}
+    </div>
+
+    <button class="button new__button">
+      🗲
+    </button>
+  </a>
+</div>

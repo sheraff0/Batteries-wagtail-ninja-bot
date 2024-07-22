@@ -1,0 +1,27 @@
+{% load static %}
+<section class="swiper-slide">
+  <div class="home__content grid">
+    <div class="home__group">
+      <img src="{{ slide.image.file.url }}" alt="" class="home__img">
+      <div class="home__indicator"></div>
+
+      <div class="home__details-img">
+        <h4 class="home__details-title">{{ slide.details_title }}</h4>
+        <span class="home__details-subtitle">{{ slide.details_subtitle }}</span>
+      </div>
+    </div>
+
+    <div class="home__data">
+      <h3 class="home__subtitle">{{ slide.subtitle }}</h3>
+      <h1 class="home__title">{{ slide.title }}</h1>
+      <p class="home__description">
+        {{ slide.description|safe }}
+      </p>
+
+      <div class="home__buttons">
+        <div class="button button__connect">Связаться</div>
+        <a href="#" class="button--link button--flex button__next">Дальше 〉</a>
+      </div>
+    </div>
+  </div>
+</section>

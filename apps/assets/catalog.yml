@@ -1,0 +1,18 @@
+title: Каталог
+slug: catalog
+
+categories:
+  - title: AKOM
+    image: logo-akom.png
+
+  - title: Feon
+    image: logo-feon.png
+
+  - title: Platin
+    image: logo-platin.png
+
+  - title: Rocket
+    image: logo-rocket.png
+
+  - title: Медведь
+    image: logo-medved.png

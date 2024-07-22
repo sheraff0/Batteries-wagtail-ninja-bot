@@ -1,0 +1,53 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags %}
+{% block titletag %}Движение лома{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>{% include 'reports/report-table.css' %}</style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Движение лома" icon="car-battery" %}
+  {% include "reports/date-interval-filter.html" %}
+  <div class="totals-table scrap-totals-table">
+    <div class="totals-table-head span-row-2">Тип операции</div>
+    <div class="totals-table-head span-column-3">Итого на начало</div>
+    <div class="totals-table-head span-column-3">Принято (Сдано)</div>
+    <div class="totals-table-head span-column-3">Итого на конец</div>
+    <div class="totals-table-subhead">шт.</div>
+    <div class="totals-table-subhead">кг</div>
+    <div class="totals-table-subhead">руб.</div>
+    <div class="totals-table-subhead">шт.</div>
+    <div class="totals-table-subhead">кг</div>
+    <div class="totals-table-subhead">руб.</div>
+    <div class="totals-table-subhead">шт.</div>
+    <div class="totals-table-subhead">кг</div>
+    <div class="totals-table-subhead">руб.</div>
+    <!-- Всего -->
+    <div class="title level-1">Всего</div>
+    {% for row in totals.total %}
+      {% for x in row %}<div class="number level-1">{{ x|safe }}</div>{% endfor %}
+    {% endfor %}
+    <!-- Принято -->
+    <div class="title level-2">Принято</div>
+    {% for row in totals.accepted %}
+      {% for x in row %}<div class="number level-2">{{ x|safe }}</div>{% endfor %}
+    {% endfor %}
+    <!-- Сдано -->
+    <div class="title level-2">Сдано</div>
+    {% for row in totals.disposed %}
+      {% for x in row %}<div class="number level-2">{{ x|safe }}</div>{% endfor %}
+    {% endfor %}
+    <!-- Восстановлено -->
+    <div class="title level-2">Восстановлено</div>
+    {% for row in totals.restored %}
+      {% for x in row %}<div class="number level-2">{{ x|safe }}</div>{% endfor %}
+    {% endfor %}
+    <!-- Продано -->
+    <div class="title level-2">Продано восстановленных</div>
+    {% for row in totals.restored_sold %}
+      {% for x in row %}<div class="number level-2{% if forloop.counter == 1 %} reference-field{% endif %}">
+        {{ x|safe }}
+      </div>{% endfor %}
+    {% endfor %}
+  </div>
+{% endblock %}

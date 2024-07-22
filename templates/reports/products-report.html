@@ -1,0 +1,53 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags %}
+{% block titletag %}Движение товаров{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>{% include 'reports/report-table.css' %}</style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Движение товаров" icon="car-battery" %}
+  <a class="file-download" href="{% url 'products_report_excel' %}?{{ request.META.QUERY_STRING }}">
+    <div class="file-download-icon">{% icon name="microsoft-excel" %}</div>
+    <div class="file-download-text">Скачать Excel</div>
+  </a>
+  {% include "reports/date-interval-filter.html" %}
+  <div class="totals-table">
+    <div class="totals-table-head span-row-2">Наименование</div>
+    <div class="totals-table-head span-row-2">Остаток на начало</div>
+    <div class="totals-table-head span-column-2">Закупка</div>
+    <div class="totals-table-head span-column-3">Реализация</div>
+    <div class="totals-table-head span-column-3">Маржа</div>
+    <div class="totals-table-head span-column-2">Остаток на конец</div>
+    <div class="totals-table-subhead">руб.</div>
+    <div class="totals-table-subhead">шт.</div>
+    <div class="totals-table-subhead">руб.</div>
+    <div class="totals-table-subhead">шт.</div>
+    <div class="totals-table-subhead scrap">Приём лома, кг</div>
+    <div class="totals-table-subhead">руб.</div>
+    <div class="totals-table-subhead margin">% от продаж</div>
+    <div class="totals-table-subhead margin">% с ломом</div>
+    <div class="totals-table-subhead">руб.</div>
+    <div class="totals-table-subhead">шт.</div>
+    {% for x in totals %}
+      <div class="title level-{{ x.level }}">
+        {% if x.model == 'product' %}
+          <a href="{{ x.edit_url }}" target="_blank">{{ x.title }}</a>
+        {% else %}
+          {{ x.title }}
+        {% endif %}
+      </div>
+      <div class="number level-{{ x.level }}">{{ x.quantity_start }}</div>
+      <div class="number level-{{ x.level }}">{{ x.supplies_amount }}</div>
+      <div class="number level-{{ x.level }}">{{ x.supplies_quantity }}</div>
+      <div class="number level-{{ x.level }}">{{ x.sales_amount }}</div>
+      <div class="number level-{{ x.level }}">{{ x.sales_quantity }}</div>
+      <div class="number level-{{ x.level }} scrap">{{ x.sales_scrap_weight }}</div>
+      <div class="number level-{{ x.level }}">{{ x.margin }}</div>
+      <div class="number level-{{ x.level }} margin">{{ x.margin_percent }}</div>
+      <div class="number level-{{ x.level }} margin">{{ x.margin_with_scrap }}</div>
+      <div class="number level-{{ x.level }}">{{ x.amount_end }}</div>
+      <div class="number level-{{ x.level }}">{{ x.quantity_end }}</div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags %}
+{% block titletag %}Расчёты с партнёрами{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>{% include 'reports/report-table.css' %}</style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Расчёты с партнёрами" icon="money-calculator-24-filled" %}
+  <div class="totals-table accounts-table">
+    <!-- Заголовок -->
+    <div class="totals-table-head">Партнёры и сделки</div>
+    <div class="totals-table-head">Принято товаров</div>
+    <div class="totals-table-head">Оплачено</div>
+    <div class="totals-table-head">Сдано лома</div>
+    <div class="totals-table-head">Аванс (нам должны)</div>
+    <div class="totals-table-head">Мы должны</div>
+    <div class="totals-table-head">Когда</div>
+    <!-- Выручка -->
+    {% for x in totals %}
+      {% if x.id %}
+        <div class="title">
+          <a href="{{ x.edit_url }}">
+            {% if x.number %}№{{ x.number }}{% endif %}
+            от {{ x.day_date|date:'Y-m-d' }}
+            ({{ x.partner }})
+            {% if x.balance != 0 %}<span style="color: red; font-weight: 900;">баланс!</span>{% endif %}
+          </a>
+        </div>
+        <div class="number">{{ x.supply }}</div>
+        <div class="number">{{ x.paid }}</div>
+        <div class="number">{{ x.scrap }}</div>
+        <div class="number">{{ x.advance }}</div>
+        <div class="number">{{ x.debt }}</div>
+        <div class="number">{% firstof x.payment_date '' %}</div>
+      {% else %}
+        <div class="title level-1">{{ x.partner }}</div>
+        <div class="number level-1">{{ x.supply }}</div>
+        <div class="number level-1">{{ x.paid }}</div>
+        <div class="number level-1">{{ x.scrap }}</div>
+        <div class="number level-1">{{ x.advance }}</div>
+        <div class="number level-1">{{ x.debt }}</div>
+        <div class="number level-1"></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}

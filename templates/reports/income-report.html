@@ -1,0 +1,52 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags %}
+{% block titletag %}Доходы{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>{% include 'reports/report-table.css' %}</style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Доходы" icon="money-check-dollar-pen" %}
+  <div class="totals-table income-table">
+    <!-- Заголовок -->
+    <div class="totals-table-head">Доходы и расходы</div>
+    {% for x in totals %}
+      <div class="totals-table-head">{{ x.ym }}</div>
+    {% endfor %}
+    <!-- Выручка -->
+    <div class="title level-1">Выручка</div>
+    {% for x in totals %}
+      <div class="number level-1">{{ x.sales }}</div>
+    {% endfor %}
+    <!-- Закупочная цена -->
+    <div class="title level-2">Закупочная цена</div>
+    {% for x in totals %}
+      <div class="number level-2">-{{ x.cogs }}</div>
+    {% endfor %}
+    <!-- Маржа -->
+    <div class="title level-1">Маржа</div>
+    {% for x in totals %}
+      <div class="number level-1">{{ x.gross_margin }}</div>
+    {% endfor %}
+    <!-- Принятый лом -->
+    <div class="title level-2">Принятый лом</div>
+    {% for x in totals %}
+      <div class="number level-2">+{{ x.scrap }}</div>
+    {% endfor %}
+    <!-- Маржа с ломом -->
+    <div class="title level-1">Маржа с ломом</div>
+    {% for x in totals %}
+      <div class="number level-1">{{ x.gross_margin_with_scrap }}</div>
+    {% endfor %}
+    <!-- Расходы -->
+    <div class="title level-2">Расходы</div>
+    {% for x in totals %}
+      <div class="number level-2">-{{ x.costs }}</div>
+    {% endfor %}
+    <!-- Чистый доход (с ломом) -->
+    <div class="title level-0">Чистый доход (с ломом)</div>
+    {% for x in totals %}
+      <div class="number level-0">{{ x.net_income }}</div>
+    {% endfor %}
+  </div>
+{% endblock %}

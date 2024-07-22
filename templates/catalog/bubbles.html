@@ -1,0 +1,7 @@
+<div class="about__container container">
+  <ul class="about__data button__parent bubbles">
+    {% for x in subset %}
+      <li class="button button--ghost{% if x.pk == page.pk %} active{% endif %}"><a href="{{ x.url }}" class="button--link">{{ x.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

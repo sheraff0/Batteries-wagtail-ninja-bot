@@ -1,0 +1,14 @@
+<div itemtype="https://schema.org/Product" itemscope>
+  <meta itemprop="sku" content="{{ product.sku }}" />
+  <meta itemprop="name" content="{{ product.page_title }}" />
+  <link itemprop="image" href="{{ product.image_url }}" />
+  <meta itemprop="description" content="{{ product.description_text }}" />
+  <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+    <meta itemprop="name" content="MyBrand" />
+  </div>
+  <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
+    <link itemprop="url" href="{{ product.full_url }}" />
+    <meta itemprop="price" content="{{ product.price }}" />
+    <meta itemprop="priceCurrency" content="RUB" />
+  </div>
+</div>

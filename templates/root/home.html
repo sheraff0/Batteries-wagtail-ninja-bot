@@ -1,0 +1,146 @@
+{% extends 'root/base.html' %}
+{% load static %}
+
+{% block main %}
+<!--==================== SLIDES ====================-->
+<section class="home container" id="home">
+  <div class="swiper home-swiper">
+    <div class="swiper-wrapper">
+      <!-- HOME SLIDER 1 -->
+      {% for slide in page.slides_list %}
+      {% include 'root/snippets/slide.html' %}
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!--==================== CATEGORIES ====================-->
+<section class="section category" id="categories">
+  <h2 class="section__title">Аккумуляторы<br>для любой техники</h2>
+
+  <div class="button__center pick-up__body">
+    <div id="node-pick-up-body-1" class="pick-up__container">
+      <!-- pick-up/App.svelte -->
+    </div>
+  </div>
+
+  <div class="category__container container grid">
+    {% for category in page.categories_list %}
+    {% include 'root/snippets/category.html' %}
+    {% endfor %}
+  </div>
+</section>
+
+<!--==================== ABOUT ====================-->
+<section class="section about" id="about">
+  <div class="about__container container grid">
+    <div class="about__data">
+      <h2 class="section__title about__title">Ваш аккумулятор</h2>
+      <p class="about__description">Предлагаем широкий выбор аккумуляторных батарей для легковых и грузовых
+        автомобилей всех марок, спецтехники и водного транспорта, автономных систем электроснабжения.</p>
+      <p class="about__description">Диагностика; бесплатное обслуживание в течение гарантийного срока.</p>
+      <p class="about__description">Скидка при сдаче старого аккумулятора от 1000 руб.</p>
+      <p class="about__description">Бесплатная доставка по городу.</p>
+      <a class="button button__connect">Узнать больше</a>
+    </div>
+
+    <img src="{% static 'img/about-1.png' %}" alt="" class="about__img">
+  </div>
+</section>
+
+<!--==================== CATALOG ====================-->
+<section class="section catalog" id="optimum">
+  <h2 class="section__title">Оптимум</h2>
+
+  <div class="button__center pick-up__body">
+    <div id="node-pick-up-body-2" class="pick-up__container">
+      <!-- pick-up/App.svelte -->
+    </div>
+  </div>
+
+  <div class="catalog__container container grid">
+    {% for product in optimum %}
+    {% include 'root/snippets/product_ticket.html' %}
+    {% endfor %}
+  </div>
+  <div class="button__center">
+    <a href="/{{ common_pages.catalog.slug }}" class="button--link button--flex">Больше 〉</a>
+  </div>
+</section>
+
+<!--==================== DISCOUNT ====================-->
+<section class="section discount">
+  <div class="discount__container container grid">
+    <div class="discount__data">
+      <h2 class="discount__title">Скидка от 1000 руб.<br>при сдаче старого аккумулятора</h2>
+      <a class="button button__connect">Связаться</a>
+    </div>
+
+    <img src="{% static 'img/recycle.png' %}" alt="" class="discount__img">
+  </div>
+</section>
+
+<!--==================== PREMIUM SLIDER ====================-->
+<section class="section new" id="premium">
+  <h2 class="section__title">Премиум</h2>
+
+  <div class="button__center pick-up__body">
+    <div id="node-pick-up-body-3" class="pick-up__container">
+      <!-- pick-up/App.svelte -->
+    </div>
+  </div>
+
+  <div class="new__container container">
+    <div class="swiper new-swiper">
+      <div class="swiper-wrapper">
+        {% for product in premium %}
+        {% include 'root/snippets/product_slide.html' %}
+        {% endfor %}
+      </div>
+    </div>
+    <a href="/{{ common_pages.catalog.slug }}?premium=1" class="button--link button--flex button__center">Больше 〉</a>
+  </div>
+</section>
+
+<!--==================== BRANDS ====================-->
+<section class="section about" id="brands">
+  <div class="about__container container grid">
+    <div class="about__data">
+      <h2 class="section__title about__title">Качество и ресурс</h2>
+      <p class="about__description">Только проверенные отечественные и зарубежные бренды.</p>
+      <p class="about__description">Гарантия 1-2 года.<br>Бесплатное обслуживание 2 раза в гарантийного срока.</p>
+      <p class="about__description">Бесплатная диагностика.<br>Скидка за утилизацию.</p>
+      <a class="button button__connect">Узнать больше</a>
+    </div>
+
+    <div class="about__data">
+      <img src="{% static 'img/brands-combined-3.png' %}" alt="" class="about__img">
+    </div>
+  </div>
+</section>
+
+<!--==================== YANDEX MAP ====================-->
+{% include 'root/snippets/yandex_map.html' %}
+
+<!--==================== OUR NEWSLETTER ====================-->
+<section class="section newsletter" hidden>
+  <div class="newsletter__container container">
+    <h2 class="section__title">Our Newsletter</h2>
+    <p class="newsletter__description">
+      Promotion new products and sales. Directly to your inbox
+    </p>
+
+    <form action="" class="newsletter__form">
+      <input type="text" placeholder="Enter your email" class="newsletter__input">
+      <button class="button">
+        Subscribe
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock main %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock extra_js %}

@@ -1,0 +1,47 @@
+<style>
+  .date-interval {
+    display: flex;
+    max-width: 400px;
+    gap: 20px;
+    margin: 20px auto;
+  }
+</style>
+<div class="date-interval" id="report-interval">
+  <input type="date" name="start">
+  <input type="date" name="end">
+</div>
+<script>
+  class DateIntervalFilter {
+    constructor(id) {
+      this.widget = document.getElementById(id);
+      [this.start, this.end] = [...this.widget.querySelectorAll("input")];
+      this.pull();
+      this.set();
+    }
+
+    pull() {
+      const params = new URLSearchParams(window.location.search);
+      this.start.value = params.get("start");
+      this.end.value = params.get("end");
+    }
+
+    push() {
+      const params = new URLSearchParams();
+      ["start", "end"].forEach(key => {
+        const value = this[key].value;
+        if (value) {
+          params.set(key, value);
+        }
+      });
+      window.location.search = params;
+    }
+
+    set() {
+      ["start", "end"].forEach(key => this[key].addEventListener("change", () => this.push()));
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reportInterval = new DateIntervalFilter("report-interval");
+  });
+</script>

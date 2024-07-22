@@ -1,0 +1,77 @@
+seo_title: Аккумуляторы-Анапа
+title: Главная
+
+slides:
+  - image: slide-1-diagnostics.png
+    title: Диагностика системы электропитания автомобиля
+    subtitle: Плохо заводится? Не работает электрооборудование?
+    description: Бесплатно проведем проверку:<br>
+          генератора,<br>
+          стартера,<br>
+          системы на наличие утечки тока.
+    details_title: Проверьте электрику.
+    details_subtitle: Примите разумное решение.
+
+  - image: slide-2-choice.png
+    title: Подбор аккумулятора
+    subtitle: Что лучше подходит для Вашего авто?
+    description: Грамотная консультация перед покупкой.<br>
+          Выберите аккумулятор, наиболее подходящий для Вашего автомобиля и режима эксплутации.<br>
+          Только проверенные отечественные и зарубежные бренды.<br>
+    details_title: Не амперами едиными.
+    details_subtitle: Спросите у наших специалистов.
+
+  - image: slide-3-delivery.png
+    title: Бесплатная доставка по городу
+    subtitle: Живете в Анапе? Путешествуете на авто?
+    description: Поможем подобрать аккумулятор.<br>
+          Бесплатно привезем и установим по месту стоянки автомобиля.
+    details_title: Удобный сервис.
+    details_subtitle: В вашем городе.
+
+  - image: slide-4-service.png
+    title: Бесплатное обслуживание АКБ
+    subtitle: Приобрели аккумулятор у нас?
+    description: Бесплатно проведем диагностику и обслуживание аккумулятора,<br>
+          в течение всего срока действия гарантии.
+    details_title: Качество.
+    details_subtitle: Жизнеспособность.
+
+  - image: slide-5-old-battery.png
+    title: Получите скидку от 1000 руб.!
+    subtitle: Хотите сдать старый аккумулятор?
+    description: При покупке аккумулятора у нас - скидка от 1000 руб. за старый аккумулятор.<br>
+        Также принимаем на утилизацию старые аккумуляторы 45 руб./кг лома.
+    details_title: Сохраните природу.
+    details_subtitle: Посчитайте свою выгоду.
+
+categories:
+  - image: category-7.png
+    title: Европа
+    description: Для легковых и коммерческих авто из Европы, США
+    catalog_filters: section=1&case_format=1
+
+  - image: category-8.png
+    title: Азия
+    description: Для легковых и коммерческих авто из Японии, Кореи, Китая
+    catalog_filters: section=1&case_format=2
+
+  - image: category-6.png
+    title: Мото
+    description: Надёжные аккумуляторы для Вашего мотоцикла
+    catalog_filters: section=4
+
+  - image: category-4.png
+    title: Инвертерные
+    description: Для систем автономного энергоснабжения
+    catalog_filters: capacity__gte=1000
+
+  - image: category-5.png
+    title: Премиум
+    description: Современные технологии, максимальный срок службы
+    catalog_filters: section=1&premium=1
+
+  - image: category-3.png
+    title: Мощные
+    description: Для грузовых автомобилей, спецтехники
+    catalog_filters: section=1&capacity__gte=120

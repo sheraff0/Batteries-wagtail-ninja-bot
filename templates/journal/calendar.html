@@ -1,0 +1,68 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}
+  {{ current_year }}
+  Журнал
+{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>
+    .year {
+      display: flex;
+      justify-content: space-around;
+      gap: 50px;
+      flex-wrap: wrap;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .month {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .day {
+      text-align: right;
+    }
+
+    .new {
+      color: gold;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Журнал" icon="date" %}
+  {% for day in days %}<p>{{ day }}</p>{% endfor %}
+  <div class="year">
+    {% for title, month in calendar.three_months %}
+      <div class="month">
+        <div class="month__title">{{ title }}</div>
+        <div class="days title">
+          {% for weekday in WEEKDAYS %}<div class="day">{{ weekday }}</div>{% endfor %}
+        </div>
+        <div class="days">
+          {% for page, date, day, weekday in month %}
+            {% if day > 0 %}
+              <div class="day">
+                {% if page %}
+                  <a href="{{ page }}">{{ day }}</a>
+                {% else %}
+                  <a href="{% url 'new_day' %}?date={{ date }}" class="new">{{ day }}</a>
+                {% endif %}
+              </div>
+            {% else %}
+              <div class="empty"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

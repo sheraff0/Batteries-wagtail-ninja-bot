@@ -1,0 +1,8 @@
+<div class="about__container container grid">
+  <div class="about__data button__parent">
+    {% for x in breadcrumbs %}
+      〈
+      <a href="{{ x.url }}" class="button--link">{{ x.title }}</a>
+    {% endfor %}
+  </div>
+</div>

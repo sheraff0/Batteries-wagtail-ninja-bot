@@ -1,0 +1,31 @@
+{% load static %}
+<dialog class="dialog__connect">
+  <div class="dialog__connect">
+    <div class="footer__links">
+      <div class="footer__link">
+        <a href="tel:{{ common_pages.contacts.phone }}" target="_blank" class="footer__link">{{ common_pages.contacts.phone }}</a>
+      </div>
+      <div class="footer__link">
+        <a href="{{ common_pages.contacts.whatsapp }}" target="_blank" class="footer__social-link">
+          <img src="{% static 'img/social-whatsapp.png' %}">
+          <span class="footer__social-text">WhatsApp</span>
+        </a>
+      </div>
+      <div class="footer__link">
+        <a href="{{ common_pages.contacts.telegram }}" target="_blank" class="footer__social-link">
+          <img src="{% static 'img/social-telegram.svg' %}">
+          <span class="footer__social-text">Telegram</span>
+        </a>
+      </div>
+      <div class="footer__link">
+        <a href="{{ common_pages.contacts.maps_url }}" target="_blank" class="footer__social-link">
+          <img src="{% static 'img/social-ymaps.svg' %}">
+          <span class="footer__social-text">Карта</span>
+        </a>
+      </div>
+      <div class="footer__link">
+        <button autofocus class="button__close">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</dialog>

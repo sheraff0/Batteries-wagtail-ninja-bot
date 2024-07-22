@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog>
+  <shop>
+    <categories>
+      <category id="101">Аккумуляторы автомобильные</category>
+      <category id="102">Мотоаккумуляторы</category>
+    </categories>
+    <offers>
+      {% for x in products %}
+      <offer id="{{ x.id }}">
+        <name>{{ x.name }}</name>
+        <vendor>{{ x.vendor }}</vendor>
+        <price>{{ x.price }}</price>
+        <currencyId>RUR</currencyId>
+        <categoryId>{% if x.section == 1 %}101{% elif x.section == 4 %}102{% endif %}</categoryId>
+        <picture>{{ x.picture }}</picture>
+        <description>
+          {{ x.description }}
+        </description>
+        <shortDescription>
+          {{ x.short_description }}
+        </shortDescription>
+        <url>{{ x.url }}</url>
+      </offer>
+      {% endfor %}
+    </offers>
+  </shop>
+</yml_catalog>

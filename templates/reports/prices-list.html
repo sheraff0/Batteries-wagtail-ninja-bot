@@ -1,0 +1,40 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags %}
+{% block titletag %}Каталог, цены{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>{% include 'reports/report-table.css' %}</style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Каталог, цены" icon="md-pricetags" %}
+  <div class="buttons-panel center">
+    <a class="file-download" href="{% url 'prices_excel' %}">
+      <div class="file-download-icon">{% icon name="microsoft-excel" %}</div>
+      <div class="file-download-text">Прайс</div>
+    </a>
+    <a class="file-download" href="{% url 'catalog_excel' %}">
+      <div class="file-download-icon">{% icon name="microsoft-excel" %}</div>
+      <div class="file-download-text">Каталог</div>
+    </a>
+    <div class="center">{% include "reports/price-list-upload.html" %}</div>
+    <div class="center">{% include "reports/price-list-aqsi.html" %}</div>
+  </div>
+  <div class="totals-table prices-table">
+    <div class="totals-table-head">Наименование</div>
+    <div class="totals-table-head">Цена</div>
+    <div class="totals-table-head">Остаток</div>
+    <div class="totals-table-head">Продано</div>
+    {% for x in catalog %}
+      <div class="title level-{{ x.level }}">
+        {% if x.model == 'product' %}
+          <a href="{{ x.edit_url }}" target="_blank">{{ x.title }}</a>
+        {% else %}
+          {{ x.title }}
+        {% endif %}
+      </div>
+      <div class="number level-{{ x.level }}">{{ x.price }}</div>
+      <div class="number level-{{ x.level }}">{{ x.quantity }}</div>
+      <div class="number level-{{ x.level }}">{{ x.sold }}</div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="category__data">
+  <a href="/{{ common_pages.catalog.slug }}{% if category.catalog_filters %}?{{ category.catalog_filters }}{% endif %}">
+    <img src="{{ category.image_url }}" alt="" class="category__img">
+    <h3 class="category__title">{{ category.title }}</h3>
+    <p class="category__description">{{ category.description|safe }}</p>
+  </a>
+</div>

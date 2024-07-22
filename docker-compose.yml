@@ -1,0 +1,73 @@
+x-backend: &backend
+  build:
+    context: .
+    dockerfile: Dockerfile
+  volumes:
+    - .:/app
+  env_file:
+    - .env
+  restart: always
+  networks:
+    - akb_network
+  depends_on:
+    - db
+    - redis
+
+services:
+  backend:
+    <<: *backend
+    container_name: akb_backend
+    command: scripts/backend.sh
+    ports:
+      - 127.0.0.1:8004:8000
+
+  tg_bot:
+    <<: *backend
+    container_name: akb_tg_bot
+    command: scripts/tg-bot.sh
+    ports:
+      - 8104:8000
+
+  db:
+    container_name: akb_db
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432"
+    environment:
+      - POSTGRES_PASSWORD=myPassW0rD
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    networks:
+      - akb_network
+
+  redis:
+    image: redis
+    container_name: akb_redis
+    restart: always
+    networks:
+      - akb_network
+
+  pgbackups:
+    container_name: akb_pg_backup
+    image: prodrigestivill/postgres-backup-local
+    restart: always
+    volumes:
+      - ./data/backups:/backups
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      - SCHEDULE=@hourly
+      - BACKUP_KEEP_DAYS=7
+      - BACKUP_KEEP_WEEKS=4
+      - BACKUP_KEEP_MONTHS=6
+      - BACKUP_KEEP_MINS=4320
+      - HEALTHCHECK_PORT=8505
+    networks:
+      - akb_network
+
+networks:
+  akb_network:
+    driver: bridge

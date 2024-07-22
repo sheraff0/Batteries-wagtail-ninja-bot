@@ -1,0 +1,46 @@
+{% extends 'root/base.html' %}
+
+{% block nav_list %}
+{% include 'root/snippets/nav_list_simple.html' %}
+{% endblock nav_list %}
+
+{% block main %}
+<!--==================== CATALOG ====================-->
+<section class="section catalog">
+  {% include 'catalog/breadcrumbs.html' %}
+  {% if search_for %}
+    <h3 class="section__title">
+      Аккумуляторы для:<br>
+      <span class="search-for__title">{{ search_for }}</span>
+    </h3>
+  {% else %}
+    <h2 class="section__title">{{ page.title }}</h2>
+  {% endif %}
+
+  {% include 'catalog/bubbles.html' with subset=siblings %}
+  {% include 'catalog/bubbles.html' with subset=children %}
+
+  <div class="catalog__container container grid">
+    {% for product in products %}
+    {% include 'root/snippets/product_ticket.html' %}
+    {% endfor %}
+  </div>
+</section>
+
+<!--==================== CATEGORIES ====================-->
+<section class="section category" id="categories">
+  <h2 class="section__title">Категории</h2>
+
+  <div class="button__center pick-up__body">
+    <div id="node-pick-up-body-2" class="pick-up__container">
+      <!-- pick-up/App.svelte -->
+    </div>
+  </div>
+
+  <div class="category__container container grid">
+    {% for category in common_pages.home.categories_list %}
+    {% include 'root/snippets/category.html' %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock main %}

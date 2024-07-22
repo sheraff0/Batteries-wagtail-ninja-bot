@@ -1,0 +1,16 @@
+{% load humanize %}
+<div class="catalog__content">
+  <a href="{{ product.url }}">
+    {% include 'root/snippets/product_premium.html' %}
+    <div class="catalog__img-container">
+      <img src="{{ product.image_url }}" alt="" class="catalog__img">
+    </div>
+    <h3 class="catalog__title">{{ product.title }}</h3>
+    <span class="catalog__subtitle">{{ product.parent.title }}</span>
+    <span class="catalog__price">{{ product.price_discount|intcomma }}&nbsp;₽</span>{% if product.price > product.price_discount %}
+    <span class="catalog__discount">{{ product.price|intcomma }}&nbsp;₽</span>{% endif %}
+    <button class="button catalog__button">
+      🗲
+    </button>
+  </a>
+</div>

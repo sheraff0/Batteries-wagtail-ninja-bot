@@ -1,0 +1,75 @@
+{% extends 'root/base.html' %}
+{% load static wagtailcore_tags humanize %}
+
+{% block nav_list %}
+{% include 'root/snippets/nav_list_simple.html' %}
+{% endblock nav_list %}
+
+{% block main %}
+<!--==================== ANNOUNCEMENT ====================-->
+<section class="section about" id="announcement">
+  {% include 'catalog/breadcrumbs.html' %}
+  {% with page as product %}
+  {% include 'catalog/product-schema.html' %}
+  <div class="about__container container">
+    <h2 class="section__title about__title">{{ product.page_title }}</h2>
+  </div>
+  <div class="about__container product__container container grid">
+    <img src="{{ product.image_url }}" alt="{{ product.title }}" class="about__img calm-down">
+    <div class="about__data product-specs">
+      <div class="product__price">
+        <span class="new__price">{{ product.price_discount|intcomma }}&nbsp;₽</span>{% if product.price > product.price_discount %}
+        <span class="price__comment">*</span>
+        <span class="new__discount">{{ product.price|intcomma }}&nbsp;₽</span>{% endif %}
+      </div>
+      {% for key, value, unit in product.specs %}
+      <p class="about__description">
+        <span class="spec-key">{{ key }}:</span>
+        <span class="spec-value">{{ value }}</span>
+        <span class="spec-unit">{{ unit }}</span>
+      </p>
+      {% endfor %}
+      <a class="button button__connect">Узнать больше</a>
+    </div>
+    <div class="about__description">
+      {{ product.description|richtext }}
+      {% if product.efb %}
+      <p class="about__description">
+        Аккумулятopныe батapeи серии ЕFB – это cпециaльнaя сeрия,
+        в пеpвую очepeдь пpeдназначенная для aвтoмoбилей с сиcтeмой CTАPТ-СТОП.
+      </p>
+      {% endif %}
+    </div>
+    <div class="about__description cell--top">
+      {% if product.discount > 0 %}
+        <p class="about__description">*&nbsp;Цeна указaнa c учётoм сдaчи cтapoгo aккумулятора такoй жe ёмкoсти.</p>
+      {% endif %}
+      <p class="about__description">Бесплатная доставка по городу.</p>
+    </div>
+  </div>
+  {% endwith %}
+</section>
+
+<!--==================== SIMILAR SLIDER ====================-->
+{% with page as product %}
+{% if product.similar.exists %}
+<section class="section new" id="premium">
+  <h2 class="section__title">Похожие</h2>
+
+  <div class="new__container container">
+    <div class="swiper new-swiper">
+      <div class="swiper-wrapper">
+        {% for product in product.similar %}
+        {% include 'root/snippets/product_slide.html' %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endwith %}
+{% endblock main %}
+
+{% block extra_js %}
+<script src="{% static 'js/product.js' %}"></script>
+{% endblock extra_js %}

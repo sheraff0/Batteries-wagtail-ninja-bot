@@ -1,0 +1,17 @@
+<li class="nav__item">
+  <a href="{{ common_pages.catalog.url }}?case_format=1"
+    class="nav__link{% if request.GET.case_format == '1' %} active-link{% endif %}"
+  >Европа</a>
+</li>
+
+<li class="nav__item">
+  <a href="{{ common_pages.catalog.url }}?case_format=2"
+    class="nav__link{% if request.GET.case_format == '2' %} active-link{% endif %}"
+  >Азия</a>
+</li>
+
+<li class="nav__item">
+  <a href="{{ common_pages.catalog.url }}?premium=1"
+    class="nav__link{% if request.GET.premium %} active-link{% endif %}"
+  >Премиум</a>
+</li>

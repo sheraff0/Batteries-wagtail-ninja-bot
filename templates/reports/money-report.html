@@ -1,0 +1,27 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}Движение товаров{% endblock %}
+{% block extra_css %}
+  {{ block.super }}
+  <style>
+    {% include 'reports/report-table.css' %}
+  </style>
+{% endblock %}
+{% block content %}
+  {% include "wagtailadmin/shared/header.html" with title="Движение денежных средств" icon="money-check-dollar-pen" %}
+  {% include "reports/date-interval-filter.html" %}
+  <div class="totals-table money-totals-table">
+    <div class="totals-table-head span-row-2">Счёт</div>
+    <div class="totals-table-head span-row-2">Остаток на начало</div>
+    <div class="totals-table-head span-column-2">Движение по счёту</div>
+    <div class="totals-table-head span-row-2">Остаток на конец</div>
+    <div class="totals-table-subhead">Приход</div>
+    <div class="totals-table-subhead">(Расход)</div>
+    {% for x in totals %}
+      <div class="title level-{% if x.id == 0 %}1{% else %}2{% endif %}">{{ x.name }}</div>
+      <div class="number level-{% if x.id == 0 %}1{% else %}2{% endif %}">{% firstof x.balance_start '' %}</div>
+      <div class="number level-{% if x.id == 0 %}1{% else %}2{% endif %}">{% firstof x.income '' %}</div>
+      <div class="number level-{% if x.id == 0 %}1{% else %}2{% endif %}">{% firstof x.expense '' %}</div>
+      <div class="number level-{% if x.id == 0 %}1{% else %}2{% endif %}">{% firstof x.balance_end '' %}</div>
+    {% endfor %}
+  </div>
+{% endblock %}

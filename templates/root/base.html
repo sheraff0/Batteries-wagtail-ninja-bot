@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Description -->
+  <meta name="description" content="Аккумуляторы для автомобиля, мотоцикла, коммерческой и специальной техники. Качественные отечественные и зарубежные аккумуляторные батареи. Автомобильные аккумуляторы. Диагностика, подбор, доставка аккумуляторов для авто, мотоцикла. Укидка при сдаче старой батареи на восстановление.">
+  <meta property="og:description" content="Аккумуляторы для автомобиля, мотоцикла, коммерческой и специальной техники. Качественные отечественные и зарубежные аккумуляторные батареи. Автомобильные аккумуляторы. Диагностика, подбор, доставка аккумуляторов для авто, мотоцикла. Укидка при сдаче старой батареи на восстановление.">
+  <meta name="twitter:description" content="Аккумуляторы для автомобиля, мотоцикла, коммерческой и специальной техники. Качественные отечественные и зарубежные аккумуляторные батареи. Автомобильные аккумуляторы. Диагностика, подбор, доставка аккумуляторов для авто, мотоцикла. Укидка при сдаче старой батареи на восстановление.">
+  <!-- Logo -->
+  <meta property="og:image" content="{% static 'img/logo-simple.png' %}">
+  <meta name="twitter:image" content="{% static 'img/logo-simple.png' %}">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://акб-анапа.рф/">
+  <meta name="author" content="Ваш аккумулятор">
+  <meta name="robots" content="all">
+  <meta name="keywords" content="аккумулятор, аккумулятор автомобильный, аккумуляторы автомобильные, купить аккумулятор в Анапе, аккумулятор Анапа, Анапа, Краснодарский край, аккумуляторная батарея, аккумуляторные батареи, аккумуляторы для мотоцикла, Platin, Atlant, AKOM, АКОМ, Тюмень, Тюменский медведь, Rocket, Ultra Solar, Feon, Тюменский медведь, зарядить аккумулятор в Анапе">
+  <!-- Title -->
+  <meta property="og:site_name" content="Аккумуляторы в Анапе">
+  <meta property="og:title" content="Магазин автомобильных аккумуляторов в Анапе, сервис аккумуляторных батарей">
+  <meta name="twitter:card" content="Аккумуляторы для автомобиля, мотоцикла, коммерческой и специальной техники">
+  <meta name="twitter:site" content="Аккумуляторы в Анапе">
+  <meta name="twitter:title" content="Магазин автомобильных аккумуляторов в Анапе, сервис аккумуляторных батарей">
+  
+  <!--=============== FAVICON ===============-->
+  <link rel="shortcut icon" href="{% static 'img/logo-simple.png' %}" type="image/x-icon">
+
+  <!--=============== SWIPER CSS ===============-->
+  <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="{% static 'css/styles-2024-05-14.css' %}">
+  <link rel="stylesheet" href="{% static 'svelte-app-2024-05-14.css' %}">
+
+  <title>{{ page.seo_title }}</title>
+  <!--==================== YANDEX METRIKA ====================-->
+  {% if YANDEX_METRIKA %}
+  {% include 'root/snippets/yandex_metrika.html' %}
+  {% endif %}
+</head>
+
+<body>
+  <!--==================== Schema.org ====================-->
+  <div class="header" hidden itemscope itemtype="http://schema.org/AutoPartsStore">
+    <meta itemprop="name" content="АКБ-Анапа" />
+    <meta itemprop="description" content="Магазин автомобильных аккумуляторов в Анапе, сервис аккумуляторных батарей" />
+    <meta itemprop="address" content="{{ common_pages.contacts.address }}" />
+    <meta itemprop="telephone" content="{{ common_pages.contacts.phone }}" />
+    <meta itemprop="email" content="{{ common_pages.contacts.email }}" />
+    <meta itemprop="priceRange" content="RUB" />
+    <img itemprop="image" src="{% static 'img/logo-simple.png' %}">
+  </div>
+
+  <!--==================== CONNECT DIALOG ====================-->
+  {% include 'root/snippets/connect_dialog.html' %}
+
+  <!--==================== HEADER ====================-->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <img src="{% static 'img/brand-logo-horizontal.svg' %}" alt="" class="nav__logo-img">
+      </a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="{{ common_pages.catalog.url }}" class="nav__link">Каталог</a>
+          </li>          
+          <div id="node-pick-up-header" class="pick-up__container">
+            <!-- pick-up/App.svelte -->
+          </div>
+
+          <!--<a href="tel:{{ page.phone }}" class="button button--ghost">Позвонить</a>-->
+          <li class="button button--ghost button__connect">Связаться</li>
+        </ul>
+
+        <div class="nav__close" id="nav-close">
+          ⨯
+        </div>
+
+        <img src="{% static 'img/nav-img.png' %}" alt="" class="nav__img">
+      </div>
+
+      <div class="nav__toggle" id="nav-toggle">
+        ☰
+      </div>
+
+    </nav>
+  </header>
+
+  <main class="main">
+    {% block main %}
+    {% endblock main %}
+  </main>
+
+  <!--==================== FOOTER ====================-->
+  <footer class="footer section">
+    <div class="footer__container container grid">
+      <div class="footer__content">
+        <div class="footer__logo">
+          <a href="#" class="footer__logo">
+            <img src="{% static 'img/brand-logo-vertical.svg' %}" alt="" class="footer__logo-img">
+          </a>
+        </div>
+
+        <div class="footer__social">
+          <a href="{{ common_pages.contacts.avito }}" target="_blank" class="footer__social-link">
+            <img src="{% static 'img/social-avito.svg' %}">
+          </a>
+          <a href="{{ common_pages.contacts.whatsapp }}" target="_blank" class="footer__social-link">
+            <img src="{% static 'img/social-whatsapp.png' %}">
+          </a>
+          <a href="{{ common_pages.contacts.telegram }}" target="_blank" class="footer__social-link">
+            <img src="{% static 'img/social-telegram.svg' %}">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__content">
+        <h3 class="footer__title">Перейти</h3>
+
+        <ul class="footer__links">
+          <li>
+            <a href="{{ common_pages.catalog.url }}?case_format=1" class="footer__link">Европа</a>
+          </li>
+          <li>
+            <a href="{{ common_pages.catalog.url }}?case_format=2" class="footer__link">Азия</a>
+          </li>
+          <li>
+            <a href="{{ common_pages.catalog.url }}?premium=1" class="footer__link">Премиум</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__content">
+        <h3 class="footer__title">Как нас найти:</h3>
+
+        <ul class="footer__links">
+          <li>
+            <a href="{{ common_pages.contacts.url }}" class="footer__link">
+              {{ common_pages.contacts.address }}</a><br>
+            <span class="footer__link"><i>вход со стороны Владимирской</i></span>
+          </li>
+          <li>
+            <a href="tel:{{ common_pages.contacts.phone }}" target="_blank" class="footer__link">
+              {{ common_pages.contacts.phone }}</a>
+          </li>
+          <li>
+            <a href="mailto:{{ common_pages.contacts.email }}" target="_blank" class="footer__link">
+              {{ common_pages.contacts.email }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="footer__copy">This site's template had been gracefully<br>shared with community by &#169; <a
+        href="https://github.com/bedimcode/responsive-halloween-website" target="_blank">Bedimcode</a></span>
+
+    <!--
+      <img src="{% static 'img/footer-1.png' %}" alt="" class="footer__img-one">
+      <img src="{% static 'img/footer-2.png' %}" alt="" class="footer__img-two">
+    -->
+  </footer>
+
+  <!--=============== SCROLL UP ===============-->
+  <a href="#" class="scrollup" id="scroll-up">
+    ︽
+  </a>
+
+  <!--=============== SCROLL REVEAL ===============-->
+  <script src="{% static 'js/scrollreveal.min.js' %}"></script>
+
+  <!--=============== SWIPER JS ===============-->
+  <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'svelte-app-2024-05-14.js' %}"></script>
+  {% block extra_js %}
+  {% endblock extra_js %}
+</body>
+
+</html>

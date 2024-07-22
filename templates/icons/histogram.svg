@@ -1,0 +1,7 @@
+<svg id="icon-histogram" viewBox="0 0 1024 1024" x="0" y="0"
+  role="img" style="display:inline-block;vertical-align:middle" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path
+      d="M416 896V128h192v768H416zm-288 0V448h192v448H128zm576 0V320h192v576H704z" />
+  </g>
+</svg>

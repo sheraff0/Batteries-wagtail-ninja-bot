@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load l10n %}
+{% load wagtailadmin_tags %}
+<form class="center file-upload" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="replace-file-input" id="price-list-upload">
+    <button class="button bicolor button--icon">{% icon name="plus" wrapped=1 %}<span class="filename">Загрузить</span></button>
+    <input id="upload" type="file" name="upload">
+  </div>
+  <input type="text" name="action" value="upload" hidden>
+  <div>
+    <input type="submit" value="Сохранить" disabled>
+  </div>
+</form>
+
+<script>
+  class FileUploadWidget {
+    constructor(widgetId) {
+      this.widget = document.getElementById(widgetId);
+      this.input = this.widget.querySelector("input");
+      this.label = this.widget.querySelector("button span.filename");
+      this.sync();
+    }
+
+    sync() {
+      this.input.addEventListener("change", () => {
+        this.label.innerText = this.input.files[0].name;
+      });
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const priceListInput = new FileUploadWidget("price-list-upload");
+    priceListInput.input.addEventListener("change", e => {
+      const form = e.target.closest("form");
+      const submit = form.querySelector('input[type="submit"]');
+      submit.disabled = false;
+    })
+  })
+</script>
